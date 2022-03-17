@@ -1,18 +1,43 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1
+    :style="{'color': color}">
+      Contador: {{contador}}
+    </h1>
+
+    <button class="btn btn-danger" @click="decrementarContador">
+      Decrementar
+    </button>
+    <button class="btn btn-success" @click="incrementarContador">
+      Incrementar
+    </button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+  export default {
+    data() {
+      return {
+        contador: 0
+      }
+    },
+    methods: {
+      incrementarContador(){
+        this.contador = this.contador + 1
+      }, 
+      decrementarContador(){
+        this.contador = this.contador - 1
+      }
+    },
+    computed: {
+      color(){
+        if (this.contador < 0) {
+          return 'red'
+        } else {
+          return 'green'
+        }
+      }
+    },
   }
-}
 </script>
